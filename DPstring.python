@@ -1,0 +1,46 @@
+@author: gaoyu
+"""
+k=["2 12345678 90000000 abc00000","fsdhfskajdhfkjasfg"]
+def split8(line):
+    length=len(line)
+    list8=[]
+    count=0
+    newstring=""
+    for i in range(0,length):
+        if i==length-1 and count!=8:
+            newstring+=line[i]
+            list8.append(newstring)
+        else:
+            if count==8:
+                list8.append(newstring)
+                newstring=""
+                count==0
+                newstring+=line[i]
+                count+=1
+            else:
+                newstring+=line[i]
+                count+=1
+    for i in range(0,len(list8)):
+        if len(list8[i])!=8:
+            new=""+list8[i]
+            num0=8-len(list8[i])
+            for j in range(0,num0):
+                new+="0"
+            list8[i]=new
+    return(list8) 
+   
+#\
+toprint=""
+final=[]    
+for line in k:
+    a = line.split(" ") 
+    
+    for i in a[:]:
+        list8=split8(i)
+        for j in list8:
+                final.append(j)
+final=sorted(final)
+for j in final:
+    toprint+=j+" "
+              
+print(toprint[:-1]) 
